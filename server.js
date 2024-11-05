@@ -11,10 +11,10 @@ app.use(cors());
 app.use(express.json()); // Habilita el manejo de JSON en las solicitudes
 
 // Sincronizar la base de datos
-sequelize.authenticate() // Verifica la conexión a la base de datos
+sequelize.authenticate()
     .then(() => {
         console.log('Conexión a la base de datos establecida correctamente.');
-        return sequelize.sync(); // Sincroniza el esquema de la base de datos
+        return sequelize.sync();
     })
     .then(() => {
         console.log('Base de datos sincronizada');
@@ -24,10 +24,18 @@ sequelize.authenticate() // Verifica la conexión a la base de datos
     });
 
 // Importar rutas
-const poblacionDistritalRoutes = require('./routes/poblaciondistrital'); // Asegúrate de que este archivo exista y exporte un enrutador válido
+const distritosRoutes = require('./routes/distritos');
+const poblacionRoutes = require('./routes/poblacion');
+const hogaresRoutes = require('./routes/hogares');
+const educacionRoutes = require('./routes/educacion');
+const economiaRoutes = require('./routes/economia');
 
 // Usar las rutas con prefijos
-app.use('/poblaciondistrital', poblacionDistritalRoutes);
+app.use('/distritos', distritosRoutes);
+app.use('/poblacion', poblacionRoutes);
+app.use('/hogares', hogaresRoutes);
+app.use('/educacion', educacionRoutes);
+app.use('/economia', economiaRoutes);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 5000;

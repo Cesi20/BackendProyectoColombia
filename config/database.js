@@ -10,6 +10,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
             encrypt: true, // Usa esto si tienes encriptación habilitada en tu base de datos
         }
     },
+    logging: false // Desactiva el registro de SQL en la consola
 });
 
 module.exports = sequelize;
